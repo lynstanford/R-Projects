@@ -1,0 +1,24 @@
+---
+title: "Decision Tree"
+output: html_notebook
+---
+# Introduction to My First R Notebook
+This R-Markdown notebook will focus on Decision Trees, which are a graphical representation of a series of logical decisions, or questions and answers at each stage. They make a useful visual for breaking down a project into different phases, or split decisions to arrive at the overall destination or output.
+
+Starting off with the root node there are 2 branches (bools) and where there is a new question a new node is created each time. Otherwise the branches just result in leafs where they end. Therefore, a top-level node is the root and the bottom-level nodes are leafs. Each decision level is considered to be a 'classification rule'.
+
+A decision tree with categories is called a 'classification tree' and a decision tree with predicted numerical values is called a 'regression tree'. Below I use an example of constructing a decision tree using the rpart ( ) recursive partitioning function.
+
+```{r}
+library(rpart)
+
+iris.tree <- rpart(species ~ sepal.length + sepal.width + petal.length + petal.width, iris.uci, method="class")
+```
+First it is necessary to import the iris dataset from the UCI ML repository.
+```{r}
+iris.uci <- read.csv("http://archive.ics.uci.edu/ml/machine-learning-databases/iris/iris.data", header=FALSE,
+                     col.names=
+                       c("sepal.length","sepal.width","petal.length","petal.width","species"))
+head(iris.uci)
+```
+
